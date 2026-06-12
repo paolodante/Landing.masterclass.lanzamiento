@@ -7,7 +7,7 @@ redirects = []
   [functions."*"]
 
 [build]
-publish = "/Users/paolo/Projects/cheery-panda-147330"
+publish = "."
 publishOrigin = "default"
 
   [build.environment]
