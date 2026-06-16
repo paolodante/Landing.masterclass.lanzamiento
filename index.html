@@ -849,10 +849,6 @@
 
   /* ===== MODAL OPT-IN ===== */
   #lead-modal{
-    display:none!important;
-    position:fixed!important;
-    inset:0!important;
-    z-index:9999!important;
     align-items:center;
     justify-content:center;
     padding:20px var(--page-pad);
@@ -860,7 +856,6 @@
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
   }
-  #lead-modal.open{display:flex!important}
   .modal-box{
     position:relative;
     width:100%;max-width:440px;
@@ -1163,7 +1158,7 @@
 </footer>
 
 <!-- ===== MODAL OPT-IN ===== -->
-<div id="lead-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display:none">
   <div class="modal-box">
     <button class="modal-close" onclick="closeLeadModal()" aria-label="Cerrar">✕</button>
 
@@ -1268,12 +1263,17 @@
   const leadModal = document.getElementById('lead-modal');
 
   function openLeadModal(){
+    leadModal.style.display = 'flex';
+    leadModal.style.position = 'fixed';
+    leadModal.style.inset = '0';
+    leadModal.style.zIndex = '9999';
     leadModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('lead-nombre')?.focus(), 60);
   }
 
   function closeLeadModal(){
+    leadModal.style.display = 'none';
     leadModal.classList.remove('open');
     document.body.style.overflow = '';
   }
