@@ -93,29 +93,90 @@
     text-shadow:0 0 40px rgba(255,216,77,.25);
   }
 
+  /* ===== VSL (mismo estilo que la landing) ===== */
+  .vsl-outer{position:relative;width:100%;margin:0 auto 6px;overflow:hidden}
+  .vsl-wrap{
+    position:relative;z-index:1;
+    border-radius:20px;padding:1.5px;
+    background:conic-gradient(from var(--a,0deg),
+      rgba(255,216,77,.0) 0%,
+      rgba(255,216,77,.65) 12%,
+      rgba(255,179,0,.15) 28%,
+      rgba(255,216,77,.0) 45%,
+      rgba(255,216,77,.45) 62%,
+      rgba(255,179,0,.1) 78%,
+      rgba(255,216,77,.0) 100%);
+    animation:spin 7s linear infinite;
+    box-shadow:0 30px 80px rgba(0,0,0,.65);
+  }
+  @property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+  @keyframes spin{to{--a:360deg}}
+  .vsl{
+    position:relative;border-radius:18.5px;overflow:hidden;
+    aspect-ratio:16/9;background:#0d0b04;
+    display:grid;place-items:center;
+  }
+  .vsl video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0d0b04}
+  .vsl::after{
+    content:"";position:absolute;top:0;left:8%;right:8%;height:1px;z-index:3;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  }
+  .vsl .thumb{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 68% 38%, rgba(255,179,0,.32), transparent 60%),
+      radial-gradient(ellipse at 12% 88%, rgba(255,216,77,.12), transparent 55%),
+      #0d0b04;
+  }
+  .play{
+    position:absolute;z-index:2;cursor:pointer;border:none;font:inherit;padding:0;
+    width:78px;height:78px;border-radius:50%;
+    background:linear-gradient(135deg,rgba(255,216,77,.18),rgba(255,255,255,.06));
+    border:1px solid rgba(255,216,77,.4);
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 40px rgba(255,179,0,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    display:grid;place-items:center;
+    transition:transform .2s ease, box-shadow .2s;
+  }
+  .vsl:hover .play{transform:scale(1.08);box-shadow:0 0 60px rgba(255,179,0,.5), inset 0 1px 0 rgba(255,255,255,.25)}
+  .vsl .play.hidden{display:none}
+  .play::after{
+    content:"";
+    border-left:20px solid #fff;
+    border-top:12px solid transparent;
+    border-bottom:12px solid transparent;
+    margin-left:5px;
+  }
+  .below-video{
+    display:inline-flex;align-items:center;gap:8px;
+    margin:16px 0 4px;
+    font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:-.01em;
+  }
+
   /* ===== tarjeta gracias ===== */
   .ty-card{
     position:relative;
-    width:100%;max-width:460px;
+    width:100%;max-width:560px;
     text-align:center;
     background:
-      radial-gradient(ellipse 80% 55% at 50% 0%, rgba(255,179,0,.12), transparent 62%),
+      radial-gradient(ellipse 80% 45% at 50% 0%, rgba(255,179,0,.12), transparent 62%),
       rgba(9,7,1,.96);
     border:1px solid rgba(255,216,77,.22);
     border-radius:26px;
-    padding:40px 28px 32px;
+    padding:38px 26px 30px;
     overflow:hidden;
     box-shadow:0 0 0 1px rgba(255,216,77,.04), 0 24px 64px rgba(0,0,0,.8), 0 0 110px rgba(255,179,0,.08);
     animation:tyIn .5s cubic-bezier(.2,.8,.3,1) both;
   }
+  @media (min-width:520px){.ty-card{padding:42px 36px 34px}}
   @keyframes tyIn{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
   .ty-card::before{
     content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
     background:linear-gradient(90deg,transparent,rgba(255,216,77,.7),transparent);
   }
   .ty-check{
-    width:74px;height:74px;border-radius:50%;
-    margin:0 auto 22px;
+    width:62px;height:62px;border-radius:50%;
+    margin:0 auto 18px;
     background:linear-gradient(135deg,var(--amber),var(--yellow));
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 8px 30px rgba(255,179,0,.4), inset 0 1px 0 rgba(255,255,255,.5);
@@ -127,13 +188,12 @@
     color:var(--amber);margin-bottom:10px;
   }
   .ty-card h1{
-    font-weight:800;font-size:clamp(24px,5.5vw,32px);
-    letter-spacing:-.03em;line-height:1.12;
-    margin-bottom:14px;
+    font-weight:800;font-size:clamp(23px,5vw,31px);
+    letter-spacing:-.03em;line-height:1.12;margin-bottom:12px;
   }
   .ty-sub{
     font-size:13.5px;color:var(--muted);line-height:1.6;
-    max-width:380px;margin:0 auto 26px;
+    max-width:420px;margin:0 auto 24px;
   }
   .ty-sub b{color:var(--text);font-weight:700}
 
@@ -160,13 +220,10 @@
 
   .ty-steps{
     list-style:none;text-align:left;
-    max-width:360px;margin:24px auto 0;
+    max-width:400px;margin:24px auto 0;
     display:flex;flex-direction:column;gap:12px;
   }
-  .ty-steps li{
-    display:flex;align-items:flex-start;gap:11px;
-    font-size:12.5px;color:var(--muted);line-height:1.5;
-  }
+  .ty-steps li{display:flex;align-items:flex-start;gap:11px;font-size:12.5px;color:var(--muted);line-height:1.5}
   .ty-steps b{color:var(--text);font-weight:700}
   .ty-step-num{
     flex-shrink:0;width:22px;height:22px;border-radius:7px;
@@ -178,7 +235,7 @@
 
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important}
-    .star,.nebula,.nebula--drift{animation:none!important}
+    .star,.nebula,.nebula--drift,.vsl-wrap{animation:none!important}
   }
 </style>
 <script>
@@ -212,11 +269,26 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
 
 <main class="ty-card">
   <div class="ty-check" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#191000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#191000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
   </div>
   <p class="ty-eyebrow">Registro confirmado</p>
-  <h1 id="ty-title">¡Listo! Ya casi estás <span class="hl">dentro</span></h1>
-  <p class="ty-sub">Falta <b>un solo paso</b>: tocá el botón y entrá al grupo de WhatsApp. Ahí te aviso fecha, hora y te mando el link de la clase.</p>
+  <h1 id="ty-title">¡Gracias! Mirá este <span class="hl">video</span></h1>
+  <p class="ty-sub">Te grabé un video corto con <b>toda la info</b> de la masterclass. Miralo completo y al terminar tocá el botón para entrar al grupo de WhatsApp.</p>
+
+  <!-- VIDEO de agradecimiento -->
+  <div class="vsl-outer">
+    <div class="vsl-wrap">
+      <div class="vsl" id="vsl-player">
+        <video src="gracias.mp4" poster="gracias-poster.jpg" playsinline preload="none"></video>
+        <button class="play" type="button" aria-label="Reproducir video"></button>
+      </div>
+    </div>
+  </div>
+
+  <p class="below-video">
+    <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path d="M6.5 1v12.5M6.5 13.5 1.5 8.5M6.5 13.5l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    mirá el video y después entrá al grupo
+  </p>
 
   <a class="btn btn-primary" id="wa-btn" href="https://chat.whatsapp.com/LIg5pAYjsT2F4wWwIN7rqa">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.13c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.25-8.24 8.25zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.27z"/></svg>
@@ -224,17 +296,18 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
   </a>
 
   <ul class="ty-steps">
-    <li><span class="ty-step-num">1</span><span>Tocá el botón de arriba y <b>unite al grupo</b> de WhatsApp.</span></li>
-    <li><span class="ty-step-num">2</span><span>Activá las <b>notificaciones</b> del grupo para no perderte el aviso.</span></li>
-    <li><span class="ty-step-num">3</span><span>Esperá el mensaje con <b>fecha, hora y el link</b> de la masterclass.</span></li>
+    <li><span class="ty-step-num">1</span><span>Mirá el <b>video completo</b> de arriba — ahí está toda la info.</span></li>
+    <li><span class="ty-step-num">2</span><span>Tocá el botón y <b>unite al grupo</b> de WhatsApp.</span></li>
+    <li><span class="ty-step-num">3</span><span>Activá las <b>notificaciones</b> del grupo para no perderte el aviso con fecha, hora y el link.</span></li>
   </ul>
 
   <p class="ty-fine">Cupos limitados · Sin spam, puro contenido de la masterclass</p>
 </main>
 
 <script>
-  // Estrellas (mismo efecto que la landing)
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Estrellas (mismo efecto que la landing)
   (function seedStars(){
     const layer = document.getElementById('stars-layer');
     if(!layer) return;
@@ -258,6 +331,22 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
     }
   })();
 
+  // Reproductor de video (mismo comportamiento que la landing)
+  const vslPlayer = document.getElementById('vsl-player');
+  if(vslPlayer){
+    const video = vslPlayer.querySelector('video');
+    const playBtn = vslPlayer.querySelector('.play');
+    const hidePlay = () => playBtn?.classList.add('hidden');
+    const showPlay = () => playBtn?.classList.remove('hidden');
+    playBtn?.addEventListener('click', () => { if(!video) return; video.play(); hidePlay(); });
+    video?.addEventListener('pause', () => { if(video.currentTime>0 && !video.ended) showPlay(); });
+    video?.addEventListener('ended', showPlay);
+    video?.addEventListener('click', () => {
+      if(video.paused){ video.play(); hidePlay(); }
+      else { video.pause(); showPlay(); }
+    });
+  }
+
   // Personalización opcional con el nombre que viene en la URL (?nombre=Juan)
   (function(){
     const params = new URLSearchParams(location.search);
@@ -265,7 +354,7 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
     if(nombre){
       const safe = nombre.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
       document.getElementById('ty-title').innerHTML =
-        '¡Gracias, ' + safe + '! Ya casi estás <span class="hl">dentro</span>';
+        '¡Gracias, ' + safe + '! Mirá este <span class="hl">video</span>';
     }
   })();
 </script>
