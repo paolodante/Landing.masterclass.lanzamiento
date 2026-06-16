@@ -1172,8 +1172,8 @@
 
     <p class="modal-sub">Dejá tu nombre y número — te mandamos el link de la clase directo por WhatsApp.</p>
 
-    <form id="lead-form" name="lead-masterclass" data-netlify="true">
-      <input type="hidden" name="form-name" value="lead-masterclass">
+    <form id="lead-form">
+
       <div class="modal-fields">
         <div class="modal-field">
           <label for="lead-nombre">Tu nombre</label>
@@ -1279,18 +1279,8 @@
     if(e.key === 'Escape' && leadModal?.classList.contains('open')) closeLeadModal();
   });
 
-  document.getElementById('lead-form')?.addEventListener('submit', async function(e){
+  document.getElementById('lead-form')?.addEventListener('submit', function(e){
     e.preventDefault();
-    const btn = this.querySelector('.modal-submit');
-    btn.disabled = true;
-    btn.innerHTML = 'Enviando<span style="opacity:.5">...</span>';
-    try {
-      await fetch('/', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: new URLSearchParams(new FormData(this)).toString()
-      });
-    } catch(_){}
     window.location.href = WA_LINK;
   });
 </script>
