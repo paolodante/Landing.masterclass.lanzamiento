@@ -953,6 +953,21 @@
     background:rgba(255,255,255,.055);
     box-shadow:0 0 0 3px rgba(255,216,77,.07);
   }
+  .field-hint{
+    display:block;margin-top:5px;
+    font-size:10.5px;color:var(--muted);opacity:.7;letter-spacing:-.01em;
+  }
+  .field-hint b{color:var(--yellow);font-weight:700}
+  .field-error{
+    display:none;margin-top:5px;
+    font-size:10.5px;font-weight:600;color:#ff8b8b;letter-spacing:-.01em;
+  }
+  .modal-field.invalid input{
+    border-color:rgba(255,90,90,.6);
+    box-shadow:0 0 0 3px rgba(255,90,90,.08);
+  }
+  .modal-field.invalid .field-hint{display:none}
+  .modal-field.invalid .field-error{display:block}
   .modal-submit{
     width:100%;justify-content:center;
     font-size:13.5px;padding:14px 22px;
@@ -1201,7 +1216,9 @@ fbq('track', 'PageView');
         </div>
         <div class="modal-field">
           <label for="lead-wa">Tu WhatsApp</label>
-          <input type="tel" id="lead-wa" name="whatsapp" placeholder="+56 9 1234 5678" required autocomplete="tel">
+          <input type="tel" id="lead-wa" name="whatsapp" value="+" placeholder="+56 9 82387714" inputmode="tel" autocomplete="tel" required>
+          <span class="field-hint">Con código de país. Ej: <b>+56 9 82387714</b></span>
+          <span class="field-error" id="lead-wa-error">Ingresá tu número completo con código de país.</span>
         </div>
       </div>
       <button type="submit" class="btn btn-primary modal-submit">
@@ -1300,8 +1317,24 @@ fbq('track', 'PageView');
     if(e.key === 'Escape' && leadModal?.classList.contains('open')) closeLeadModal();
   });
 
+  // Campo WhatsApp: dejar solo "+" al inicio y dígitos/espacios mientras escribe
+  const waInput = document.getElementById('lead-wa');
+  const waField = waInput?.closest('.modal-field');
+  waInput?.addEventListener('input', () => {
+    let v = waInput.value.replace(/[^\d\s]/g, ''); // quita todo menos dígitos y espacios
+    waInput.value = '+' + v.replace(/^\s+/, '');   // garantiza el "+" al inicio
+    waField?.classList.remove('invalid');
+  });
+
   document.getElementById('lead-form')?.addEventListener('submit', function(e){
     e.preventDefault();
+    // Validar número de WhatsApp: + seguido de 10 a 14 dígitos (número completo con código de país)
+    const digits = (waInput?.value || '').replace(/\D/g, '');
+    if(digits.length < 10 || digits.length > 14){
+      waField?.classList.add('invalid');
+      waInput?.focus();
+      return;
+    }
     // Redirige a la thank you page (la conversión Meta Pixel se dispara allí).
     // Pasa el nombre para personalizar el saludo.
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
