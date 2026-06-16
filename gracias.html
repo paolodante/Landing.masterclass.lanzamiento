@@ -272,8 +272,8 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
     <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#191000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
   </div>
   <p class="ty-eyebrow">Registro confirmado</p>
-  <h1 id="ty-title">¡Gracias! Mirá este <span class="hl">video</span></h1>
-  <p class="ty-sub">Te grabé un video corto con <b>toda la info</b> de la masterclass. Miralo completo y al terminar tocá el botón para entrar al grupo de WhatsApp.</p>
+  <h1 id="ty-title">¡Tu cupo está <span class="hl">reservado</span>!</h1>
+  <p class="ty-sub">Te grabé un video corto donde te explico cómo va a ser la <b>masterclass en vivo del sábado 4 de julio</b>. Miralo completo y después entrá al grupo de WhatsApp: ahí te mando el <b>link de acceso y el recordatorio</b> para que no te la pierdas.</p>
 
   <!-- VIDEO de agradecimiento -->
   <div class="vsl-outer">
@@ -287,7 +287,7 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
 
   <p class="below-video">
     <svg width="13" height="15" viewBox="0 0 13 15" fill="none"><path d="M6.5 1v12.5M6.5 13.5 1.5 8.5M6.5 13.5l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    mirá el video y después entrá al grupo
+    miralo completo y después entrá al grupo
   </p>
 
   <a class="btn btn-primary" id="wa-btn" href="https://chat.whatsapp.com/LIg5pAYjsT2F4wWwIN7rqa">
@@ -296,12 +296,12 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
   </a>
 
   <ul class="ty-steps">
-    <li><span class="ty-step-num">1</span><span>Mirá el <b>video completo</b> de arriba — ahí está toda la info.</span></li>
-    <li><span class="ty-step-num">2</span><span>Tocá el botón y <b>unite al grupo</b> de WhatsApp.</span></li>
-    <li><span class="ty-step-num">3</span><span>Activá las <b>notificaciones</b> del grupo para no perderte el aviso con fecha, hora y el link.</span></li>
+    <li><span class="ty-step-num">1</span><span>Mirá el <b>video completo</b> de arriba — te cuento de qué se trata todo.</span></li>
+    <li><span class="ty-step-num">2</span><span>Tocá el botón y <b>entrá al grupo</b> de WhatsApp para reservar tu acceso.</span></li>
+    <li><span class="ty-step-num">3</span><span>Activá las <b>notificaciones</b> del grupo así no te perdés el link el <b>sábado 4 de julio</b>.</span></li>
   </ul>
 
-  <p class="ty-fine">Cupos limitados · Sin spam, puro contenido de la masterclass</p>
+  <p class="ty-fine">Masterclass en vivo · sábado 4 de julio · Sin spam, puro contenido</p>
 </main>
 
 <script>
@@ -354,7 +354,7 @@ fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'});
     if(nombre){
       const safe = nombre.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
       document.getElementById('ty-title').innerHTML =
-        '¡Gracias, ' + safe + '! Mirá este <span class="hl">video</span>';
+        safe + ', ¡tu cupo está <span class="hl">reservado</span>!';
     }
   })();
 </script>
