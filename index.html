@@ -1277,7 +1277,6 @@ fbq('track', 'PageView');
   }
 
   /* --- Modal opt-in --- */
-  const WA_LINK = 'https://chat.whatsapp.com/LIg5pAYjsT2F4wWwIN7rqa';
   const leadModal = document.getElementById('lead-modal');
 
   function openLeadModal(){
@@ -1303,9 +1302,10 @@ fbq('track', 'PageView');
 
   document.getElementById('lead-form')?.addEventListener('submit', function(e){
     e.preventDefault();
-    // Conversión Meta Pixel: se registra cuando el lead completa el form
-    try { fbq('track', 'CompleteRegistration', {content_name: 'masterclass-julio-2026'}); } catch(_){}
-    setTimeout(() => { window.location.href = WA_LINK; }, 350);
+    // Redirige a la thank you page (la conversión Meta Pixel se dispara allí).
+    // Pasa el nombre para personalizar el saludo.
+    const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
+    window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
   });
 </script>
 
