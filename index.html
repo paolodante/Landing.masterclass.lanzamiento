@@ -848,7 +848,13 @@
   }
 
   /* ===== MODAL OPT-IN ===== */
+  /* position/inset/z-index con !important para ganarle a la regla
+     global  body > :not(.page-bg){position:relative}  que de otro
+     modo manda el modal al flujo normal y lo muestra abajo */
   #lead-modal{
+    position:fixed!important;
+    inset:0!important;
+    z-index:99999!important;
     align-items:center;
     justify-content:center;
     padding:20px var(--page-pad);
@@ -1264,9 +1270,6 @@
 
   function openLeadModal(){
     leadModal.style.display = 'flex';
-    leadModal.style.position = 'fixed';
-    leadModal.style.inset = '0';
-    leadModal.style.zIndex = '9999';
     leadModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('lead-nombre')?.focus(), 60);
