@@ -1385,7 +1385,18 @@ fbq('track', 'PageView');
       return;
     }
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
-    window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
+    if(typeof fbq === 'function'){
+      fbq('track', 'CompleteRegistration', {
+        content_name: 'masterclass-julio-2026',
+        content_category: 'masterclass',
+        status: true,
+        value: 0,
+        currency: 'CLP'
+      });
+    }
+    setTimeout(function(){
+      window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
+    }, 300);
   });
 
   // Countdown hacia el instante absoluto de la clase (se ajusta a la hora local de cada quien)
