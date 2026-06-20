@@ -1385,6 +1385,7 @@ fbq('track', 'PageView');
       return;
     }
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
+    const eid = 'reg_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
     if(typeof fbq === 'function'){
       fbq('track', 'CompleteRegistration', {
         content_name: 'masterclass-julio-2026',
@@ -1392,10 +1393,10 @@ fbq('track', 'PageView');
         status: true,
         value: 0,
         currency: 'CLP'
-      });
+      }, {eventID: eid});
     }
     setTimeout(function(){
-      window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
+      window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre) + '&eid=' + eid;
     }, 300);
   });
 
