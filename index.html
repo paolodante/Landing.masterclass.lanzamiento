@@ -1261,9 +1261,9 @@ fbq('track', 'PageView');
         </div>
         <div class="modal-field">
           <label for="lead-wa">Tu WhatsApp</label>
-          <input type="tel" id="lead-wa" name="whatsapp" value="+" placeholder="+56 9 82387714" inputmode="tel" autocomplete="tel" required>
-          <span class="field-hint">Escribe tu número completo <b>con el código de tu país</b>.</span>
-          <span class="field-error" id="lead-wa-error">Ingresá tu número completo con código de país.</span>
+          <input type="tel" id="lead-wa" name="whatsapp" value="+56 9 " placeholder="1234 5678" inputmode="tel" autocomplete="tel" required>
+          <span class="field-hint">Ingresa tus <b>8 dígitos</b> restantes.</span>
+          <span class="field-error" id="lead-wa-error">Ingresa tus 8 dígitos del número chileno.</span>
         </div>
       </div>
       <button type="submit" class="btn btn-primary modal-submit">
@@ -1344,20 +1344,29 @@ fbq('track', 'PageView');
     if(e.key === 'Escape' && leadModal?.classList.contains('open')) closeLeadModal();
   });
 
-  // Campo WhatsApp: dejar solo "+" al inicio y dígitos/espacios mientras escribe
   const waInput = document.getElementById('lead-wa');
   const waField = waInput?.closest('.modal-field');
+  const WA_PREFIX = '+56 9 ';
   waInput?.addEventListener('input', () => {
-    let v = waInput.value.replace(/[^\d\s]/g, ''); // quita todo menos dígitos y espacios
-    waInput.value = '+' + v.replace(/^\s+/, '');   // garantiza el "+" al inicio
+    let v = waInput.value;
+    if(!v.startsWith(WA_PREFIX)){
+      const digits = v.replace(/\D/g, '').replace(/^569?/, '');
+      v = WA_PREFIX + digits;
+    } else {
+      const rest = v.slice(WA_PREFIX.length).replace(/\D/g, '');
+      v = WA_PREFIX + rest;
+    }
+    waInput.value = v;
     waField?.classList.remove('invalid');
+  });
+  waInput?.addEventListener('keydown', e => {
+    if((e.key === 'Backspace' || e.key === 'Delete') && waInput.value === WA_PREFIX) e.preventDefault();
   });
 
   document.getElementById('lead-form')?.addEventListener('submit', function(e){
     e.preventDefault();
-    // Validar número de WhatsApp: + seguido de 10 a 14 dígitos (número completo con código de país)
     const digits = (waInput?.value || '').replace(/\D/g, '');
-    if(digits.length < 10 || digits.length > 14){
+    if(digits.length !== 11){
       waField?.classList.add('invalid');
       waInput?.focus();
       return;
