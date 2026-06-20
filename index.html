@@ -413,9 +413,9 @@
     aspect-ratio:16/9;background:#0d0b04;
     display:grid;place-items:center;
   }
-  .vsl video{
+  .vsl video,.vsl iframe{
     position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;display:block;background:#0d0b04;
+    object-fit:cover;display:block;background:#0d0b04;border:none;
   }
   /* brillo interno superior, efecto vidrio */
   .vsl::after{
@@ -1069,8 +1069,7 @@ fbq('track', 'PageView');
   <div class="vsl-outer reveal" id="vsl">
   <div class="vsl-wrap">
     <div class="vsl" id="vsl-player">
-      <video src="vsl.mp4" poster="vsl-poster.jpg" playsinline preload="none"></video>
-      <button class="play" type="button" aria-label="Reproducir video"></button>
+      <iframe src="https://www.loom.com/embed/f5348edcb6b64c8ab31450f798774533?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" allowfullscreen allow="autoplay; fullscreen"></iframe>
     </div>
   </div>
   </div>
@@ -1323,24 +1322,6 @@ fbq('track', 'PageView');
   }
   seedStars(document.getElementById('stars-layer'), window.innerWidth<640?28:48);
 
-  const vslPlayer=document.getElementById('vsl-player');
-  if(vslPlayer){
-    const video=vslPlayer.querySelector('video');
-    const playBtn=vslPlayer.querySelector('.play');
-    const hidePlay=()=>playBtn?.classList.add('hidden');
-    const showPlay=()=>playBtn?.classList.remove('hidden');
-    playBtn?.addEventListener('click',()=>{
-      if(!video) return;
-      video.play();
-      hidePlay();
-    });
-    video?.addEventListener('pause',()=>{ if(video.currentTime>0 && !video.ended) showPlay(); });
-    video?.addEventListener('ended',showPlay);
-    video?.addEventListener('click',()=>{
-      if(video.paused){ video.play(); hidePlay(); }
-      else { video.pause(); showPlay(); }
-    });
-  }
 
   /* --- Modal opt-in --- */
   const leadModal = document.getElementById('lead-modal');
