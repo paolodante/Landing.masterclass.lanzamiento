@@ -1370,7 +1370,7 @@ fbq('track', 'PageView');
       return;
     }
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
-    const whatsapp = waInput?.value.trim() || '';
+    const whatsapp = (waInput?.value.trim() || '').replace(/^\+/, '');
     fetch('https://script.google.com/macros/s/AKfycbyT7P6Gj6TCvVijfv4ukeyuqetdRzJnCk5tOFU4sz1c4s7G2CxeaUqJxgDJY79qicKP/exec', {
       method: 'POST',
       mode: 'no-cors',
