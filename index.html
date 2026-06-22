@@ -1421,7 +1421,7 @@ fbq('track', 'PageView');
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
     const whatsapp = (waInput?.value.trim() || '').replace(/^\+/, '');
     navigator.sendBeacon(
-      'https://script.google.com/macros/s/AKfycbz2oym8n4cUmrRQehHcCYYFHW4sggoIeAGqNgA5owYswIHQDGBB-7OaSEBLFx7nJhrm/exec',
+      'https://script.google.com/macros/s/AKfycbxzvERspfrispXoBDjPQzIe2ewKXIlU0P82ma8o_uPtCTVyAMahSXE8Kxs2PEQn_TlL/exec',
       JSON.stringify({nombre, whatsapp})
     );
     window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
@@ -1485,7 +1485,7 @@ fbq('track', 'PageView');
       if(idx < names.length) setTimeout(cycle, 22000);
     }
 
-    fetch('https://script.google.com/macros/s/AKfycbz2oym8n4cUmrRQehHcCYYFHW4sggoIeAGqNgA5owYswIHQDGBB-7OaSEBLFx7nJhrm/exec')
+    fetch('https://script.google.com/macros/s/AKfycbxzvERspfrispXoBDjPQzIe2ewKXIlU0P82ma8o_uPtCTVyAMahSXE8Kxs2PEQn_TlL/exec')
       .then(r => r.json())
       .then(d => { if(d.names?.length){ names = d.names; setTimeout(cycle, 7000); } })
       .catch(() => {});
