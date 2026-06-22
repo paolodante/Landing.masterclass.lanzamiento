@@ -1463,31 +1463,46 @@ fbq('track', 'PageView');
     }
   })();
 
-  // Social proof toast — muestra los últimos registrados del sheet
+  // Social proof toast — muestra registrados reales del sheet con tiempo relativo
   (function(){
     const toast = document.getElementById('sp-toast');
     const nameEl = document.getElementById('sp-name');
     const initEl = document.getElementById('sp-initial');
+    const subEl = toast?.querySelector('.sp-sub');
     if(!toast) return;
-    let names = [], idx = 0;
+    let entries = [], idx = 0;
 
-    function show(name){
-      nameEl.textContent = name;
-      initEl.textContent = name.charAt(0).toUpperCase();
+    function relTime(ts){
+      const s = Math.floor((Date.now() - ts) / 1000);
+      if(s < 120) return 'hace un momento';
+      const m = Math.floor(s / 60);
+      if(m < 60) return 'hace ' + m + ' minuto' + (m > 1 ? 's' : '');
+      const h = Math.floor(m / 60);
+      if(h < 24) return 'hace ' + h + ' hora' + (h > 1 ? 's' : '');
+      const d = Math.floor(h / 24);
+      return 'hace ' + d + ' día' + (d > 1 ? 's' : '');
+    }
+
+    function show(entry){
+      nameEl.textContent = entry.name;
+      initEl.textContent = entry.name.charAt(0).toUpperCase();
+      if(subEl) subEl.textContent = relTime(entry.ts);
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4500);
     }
 
     function cycle(){
-      if(idx >= names.length) return;
-      show(names[idx]);
+      if(idx >= entries.length) return;
+      show(entries[idx]);
       idx++;
-      if(idx < names.length) setTimeout(cycle, 22000);
+      if(idx < entries.length) setTimeout(cycle, 22000);
     }
 
     fetch('https://script.google.com/macros/s/AKfycbxzvERspfrispXoBDjPQzIe2ewKXIlU0P82ma8o_uPtCTVyAMahSXE8Kxs2PEQn_TlL/exec')
       .then(r => r.json())
-      .then(d => { if(d.names?.length){ names = d.names; setTimeout(cycle, 7000); } })
+      .then(d => {
+        if(d.entries?.length){ entries = d.entries; setTimeout(cycle, 7000); }
+      })
       .catch(() => {});
   })();
 </script>
