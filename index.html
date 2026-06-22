@@ -1372,7 +1372,7 @@ fbq('track', 'PageView');
     const nombre = document.getElementById('lead-nombre')?.value.trim() || '';
     const whatsapp = (waInput?.value.trim() || '').replace(/^\+/, '');
     navigator.sendBeacon(
-      'https://script.google.com/macros/s/AKfycbyT7P6Gj6TCvVijfv4ukeyuqetdRzJnCk5tOFU4sz1c4s7G2CxeaUqJxgDJY79qicKP/exec',
+      'https://script.google.com/macros/s/AKfycbz4mMkHzTCralb8rrZT-B7mTICYC6ByQGAUy-e7KceR5TTUo3LBP9nE4GvCaTh-_oyF/exec',
       JSON.stringify({nombre, whatsapp})
     );
     window.location.href = 'gracias.html?nombre=' + encodeURIComponent(nombre);
