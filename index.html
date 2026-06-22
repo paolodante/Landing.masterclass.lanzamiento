@@ -1479,15 +1479,15 @@ fbq('track', 'PageView');
     }
 
     function cycle(){
-      if(!names.length) return;
-      show(names[idx % names.length]);
+      if(idx >= names.length) return;
+      show(names[idx]);
       idx++;
-      setTimeout(cycle, 22000);
+      if(idx < names.length) setTimeout(cycle, 22000);
     }
 
     fetch('https://script.google.com/macros/s/AKfycbz4mMkHzTCralb8rrZT-B7mTICYC6ByQGAUy-e7KceR5TTUo3LBP9nE4GvCaTh-_oyF/exec')
       .then(r => r.json())
-      .then(d => { if(d.names?.length){ names = d.names; setTimeout(cycle, 10000); } })
+      .then(d => { if(d.names?.length){ names = d.names; setTimeout(cycle, 7000); } })
       .catch(() => {});
   })();
 </script>
