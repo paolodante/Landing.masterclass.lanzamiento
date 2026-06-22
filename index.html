@@ -1470,7 +1470,7 @@ fbq('track', 'PageView');
     const initEl = document.getElementById('sp-initial');
     const subEl = toast?.querySelector('.sp-sub');
     if(!toast) return;
-    let entries = [], idx = 0;
+    let entries = [], idx = 0, ticker = null;
 
     function relTime(ts){
       const s = Math.floor((Date.now() - ts) / 1000);
@@ -1486,9 +1486,16 @@ fbq('track', 'PageView');
     function show(entry){
       nameEl.textContent = entry.name;
       initEl.textContent = entry.name.charAt(0).toUpperCase();
-      if(subEl) subEl.textContent = relTime(entry.ts);
+      if(ticker) clearInterval(ticker);
+      if(subEl){
+        subEl.textContent = relTime(entry.ts);
+        ticker = setInterval(() => { subEl.textContent = relTime(entry.ts); }, 1000);
+      }
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 4500);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        clearInterval(ticker);
+      }, 4500);
     }
 
     function cycle(){
