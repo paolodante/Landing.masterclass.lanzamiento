@@ -1474,7 +1474,7 @@ fbq('track', 'PageView');
 
     function relTime(ts){
       const s = Math.floor((Date.now() - ts) / 1000);
-      if(s < 120) return 'hace un momento';
+      if(s < 60) return 'hace ' + Math.max(1, s) + ' segundo' + (s !== 1 ? 's' : '');
       const m = Math.floor(s / 60);
       if(m < 60) return 'hace ' + m + ' minuto' + (m > 1 ? 's' : '');
       const h = Math.floor(m / 60);
