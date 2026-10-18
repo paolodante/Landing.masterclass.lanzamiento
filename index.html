@@ -45,7 +45,6 @@
     overflow:hidden;
   }
 
-  /* luces galaxia — puntos de luz sobre negro total */
   .galaxy-lights{
     position:absolute;inset:0;z-index:0;
     pointer-events:none;overflow:visible;
@@ -97,7 +96,6 @@
     --no:.22;--np:4.8s;--nd:-1.9s;
     background:radial-gradient(circle, rgba(255,179,0,.42) 0%, transparent 52%);
   }
-  /* corona superior — primera carga + movimiento */
   .nebula--drift{
     animation:nebulaDrift var(--ndur,20s) ease-in-out infinite alternate;
     animation-delay:var(--nd,0s);
@@ -244,7 +242,6 @@
     white-space:normal;
     max-width:100%;
     box-sizing:border-box;
-    line-height:1.35;
   }
   .hero-badge-text{display:block;text-align:center}
   @media (min-width:520px){
@@ -388,7 +385,6 @@
     margin:0 auto;
     overflow:hidden;
   }
-  /* borde de gradiente animado */
   .vsl-wrap{
     position:relative;z-index:1;
     border-radius:20px;
@@ -417,7 +413,6 @@
     position:absolute;inset:0;width:100%;height:100%;
     object-fit:cover;display:block;background:#0d0b04;border:none;
   }
-  /* brillo interno superior, efecto vidrio */
   .vsl::after{
     content:"";position:absolute;top:0;left:8%;right:8%;height:1px;z-index:3;
     background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
@@ -601,8 +596,6 @@
     font-size:10px;color:#5d5872;
   }
 
-
-  /* ===== secciones alternadas ===== */
   .section.alt{
     background:transparent;
   }
@@ -923,9 +916,6 @@
   .sp-sub{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
 
   /* ===== MODAL OPT-IN ===== */
-  /* position/inset/z-index con !important para ganarle a la regla
-     global  body > :not(.page-bg){position:relative}  que de otro
-     modo manda el modal al flujo normal y lo muestra abajo */
   #lead-modal{
     position:fixed!important;
     inset:0!important;
@@ -987,7 +977,6 @@
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 4px 18px rgba(255,179,0,.38);
   }
-  .modal-head-text{}
   .modal-eyebrow{
     font-size:9.5px;font-weight:800;letter-spacing:.14em;
     color:var(--amber);text-transform:uppercase;margin-bottom:3px;
@@ -1100,7 +1089,7 @@ fbq('track', 'PageView');
 
   <p class="sub reveal">
     <span class="sub-line">Sin experiencia, sin invertir de más y sin adivinar. <b>Mira el video</b></span>
-    <span class="sub-line">y únete al grupo de la masterclass en vivo del <b>Miercoles 14 de Octubre</b>.</span>
+    <span class="sub-line">y únete al grupo de la masterclass en vivo del <b>Miércoles 21 de Octubre</b>.</span>
   </p>
 
   <div class="vsl-outer reveal" id="vsl">
@@ -1222,17 +1211,17 @@ fbq('track', 'PageView');
 <section class="cta-final">
   <div class="reveal"><span class="live-badge"><span class="live-dot" aria-hidden="true"></span><span>El grupo se cierra <b>en pocas horas</b></span></span></div>
   <h2 class="reveal"><span class="h2-line">Entra al grupo antes de que</span> <span class="h2-line"><span class="serif">se agoten los cupos</span></span></h2>
-  <p class="lead reveal">La masterclass es <b>en vivo el Miercoles 14 de Octubre</b>. En el grupo te mando el link de la clase y suelto los bonos antes que nadie. Si no estás en el grupo, te la pierdes.</p>
+  <p class="lead reveal">La masterclass es <b>en vivo el Miércoles 21 de Octubre</b>. En el grupo te mando el link de la clase y suelto los bonos antes que nadie. Si no estás en el grupo, te la pierdes.</p>
 
   <div class="cd-block reveal">
     <p class="cd-title">La masterclass empieza en</p>
-    <div class="countdown" id="countdown" data-target="2026-10-14T22:00:00-03:00" role="timer" aria-label="Cuenta regresiva para la masterclass">
+    <div class="countdown" id="countdown" data-target="2026-10-21T22:00:00-03:00" role="timer" aria-label="Cuenta regresiva para la masterclass">
       <div class="cd-unit"><span class="cd-num" data-cd-d>00</span><span class="cd-lbl">días</span></div>
       <div class="cd-unit"><span class="cd-num" data-cd-h>00</span><span class="cd-lbl">hrs</span></div>
       <div class="cd-unit"><span class="cd-num" data-cd-m>00</span><span class="cd-lbl">min</span></div>
       <div class="cd-unit"><span class="cd-num" data-cd-s>00</span><span class="cd-lbl">seg</span></div>
     </div>
-    <p class="cd-tz" id="cd-local">Miercoles 14 de Octubre· 22:00</p>
+    <p class="cd-tz" id="cd-local">Miércoles 21 de Octubre · 22:00</p>
   </div>
 
   <button class="btn btn-primary reveal" onclick="openLeadModal()"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.13c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.25-8.24 8.25zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.27z"/></svg> Entrar al grupo de WhatsApp →</button>
@@ -1257,7 +1246,7 @@ fbq('track', 'PageView');
         <p>No. Es en vivo y no habrá repetición. Por eso es clave que estés en el grupo de WhatsApp: ahí aviso fecha, hora y mando el link.</p>
       </details>
       <details>
-        <summary>¿Qué pasa si no puedo entrar a la comunidad ahora?</summary>
+        <summary>¿Qué pasa si no puedo entrar a la comunidad ahora?<span class="faq-x">+</span></summary>
         <p>Después de la clase cerramos el ingreso por 2-3 meses, y cuando reabra será a un precio más alto. La ventana es esa.</p>
       </details>
       <details>
@@ -1311,7 +1300,7 @@ fbq('track', 'PageView');
         <div class="modal-field">
           <label for="lead-wa">Tu WhatsApp</label>
           <input type="tel" id="lead-wa" name="whatsapp" value="+56 9 " placeholder="1234 5678" inputmode="tel" autocomplete="tel" required>
-<span class="field-error" id="lead-wa-error">Ingresa tus 8 dígitos del número chileno.</span>
+          <span class="field-error" id="lead-wa-error">Ingresa tus 8 dígitos del número chileno.</span>
         </div>
       </div>
       <button type="submit" class="btn btn-primary modal-submit">
@@ -1516,4 +1505,3 @@ fbq('track', 'PageView');
 
 </body>
 </html>
-
